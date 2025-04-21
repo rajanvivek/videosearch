@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Search for videos across multiple platforms with our simple, fast video search engine. Find and play videos instantly with timestamp precision.">
+    <meta name="theme-color" content="#ffffff">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="">
+
+    <!-- Alpine.js - Load first -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <title>Video Search - Find and Play Videos Instantly</title>
+    <!-- SEO Description -->
+    <meta name="description" content="Search for videos across multiple platforms with our simple, fast video search engine. Find and play videos instantly with timestamp precision.">
+
+    <!-- Performance optimization: Preload critical resources -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+
+    <!-- Header Scripts -->
+    <script id="header-scripts">
+        // This script tag will be replaced with actual scripts.head content
+        if (window.scripts && window.scripts.head) {
+            document.getElementById('header-scripts').outerHTML = window.scripts.head;
+        }
+    </script>
+
+    <!-- Core CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // render the settings object
+        //console.log('settings', [object Object]);
+        document.addEventListener('DOMContentLoaded', function() {
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: {
+                                DEFAULT: '#4285F4',
+                                50: '#f8f8f8',
+                                100: '#e8e8e8',
+                                200: '#d3d3d3',
+                                300: '#a3a3a3',
+                                400: '#737373',
+                                500: '#525252',
+                                600: '#404040',
+                                700: '#262626',
+                                800: '#171717',
+                                900: '#0a0a0a',
+                                950: '#030303',
+                            },
+                            secondary: {
+                                DEFAULT: '#34A853',
+                                50: '#f8f8f8',
+                                100: '#e8e8e8',
+                                200: '#d3d3d3',
+                                300: '#a3a3a3',
+                                400: '#737373',
+                                500: '#525252',
+                                600: '#404040',
+                                700: '#262626',
+                                800: '#171717',
+                                900: '#0a0a0a',
+                                950: '#030303',
+                            },
+                            accent: {
+                                DEFAULT: '',
+                                50: '#f8f8f8',
+                                100: '#e8e8e8',
+                                200: '#d3d3d3',
+                                300: '#a3a3a3',
+                                400: '#737373',
+                                500: '#525252',
+                                600: '#404040',
+                                700: '#262626',
+                                800: '#171717',
+                                900: '#0a0a0a',
+                                950: '#030303',
+                            },
+                        },
+                        fontFamily: {
+                            sans: ['Roboto', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                            heading: ['Nunito', 'Inter', 'system-ui', 'sans-serif'],
+                            body: ['Nunito', 'Inter', 'system-ui', 'sans-serif'],
+                        },
+                        spacing: {
+                            '18': '4.5rem',
+                            '22': '5.5rem',
+                            '30': '7.5rem',
+                        },
+                        maxWidth: {
+                            '8xl': '88rem',
+                            '9xl': '96rem',
+                        },
+                        aspectRatio: {
+                            'portrait': '3/4',
+                            'landscape': '4/3',
+                            'ultrawide': '21/9',
+                        },
+                    },
+                },
+                variants: {
+                    extend: {
+                        opacity: ['disabled'],
+                        cursor: ['disabled'],
+                        backgroundColor: ['active', 'disabled'],
+                        textColor: ['active', 'disabled'],
+                    },
+                },
+            }
+        });
+    </script>
+
+    <!-- Utilities and Components -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.js"></script>
+
+    <!-- Optimized Font Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+    <!-- Dynamic Meta Tags -->
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="">
+    <meta name="google-site-verification" content="">
+    <meta name="baidu-verification" content="">
+    <meta name="yandex-verification" content="">
+    <meta name="bing-verification" content="">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Video Search">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+
+    <!-- Font Links -->
+
+    <link rel="icon" type="image/x-icon" href="">
+
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Roboto, Inter, system-ui, sans-serif;
+        }
+        
+        body {
+            font-family: Nunito, Inter, system-ui, sans-serif;
+        }
+    </style>
+</head>
+
+<body class="antialiased text-gray-800 min-h-screen flex flex-col">
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-white focus:text-black">
+    Skip to main content
+  </a>
+
+    <!-- Main content area -->
+    <main id="main-content" class="flex-1 relative h-full">
+        <div id="RolloutPageContent">
+            <element id="c29a2ea9-938f-4163-b416-33e039f94ddc" data-section-id="c29a2ea9-938f-4163-b416-33e039f94ddc">
+                <div id="root">
+                    <section id="search" class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+                        <div class="max-w-4xl mx-auto" id="el-9255od5a">
+                            <!-- Search Header -->
+                            <div class="text-center mb-16" id="el-uf6jno8p">
+                                <h1 class="text-4xl font-bold text-blue-600 mb-2" id="el-ivqa492w">Video Search</h1>
+
+
+                                <!-- Search Input -->
+                                <div class="relative max-w-2xl mx-auto" id="el-u33p3zhl">
+                                    <input type="text" id="search-input" placeholder="Ask a question..." class="w-full px-5 py-4 pr-12 text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm">
+                                    <button id="search-button" class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition duration-300" aria-label="Search">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" id="el-56gxtovi">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" id="el-w98luaj1"></path>
+                      </svg>
+                    </button>
+                                </div>
+                                <div id="search-status" class="text-gray-600 mt-4 h-6"></div>
+                            </div>
+
+                            <!-- Search Results -->
+                            <div id="search-results" class="mt-8 space-y-6"></div>
+
+                            <!-- Results Not Found -->
+                            <div id="no-results" class="hidden mt-12 text-center">
+                                <p class="text-gray-600" id="el-i5whb0lt">No results found. Try a different search.</p>
+                            </div>
+
+                            <!-- Search Instructions -->
+
+
+                            <!-- Attribution -->
+                            <div class="mt-8 text-center text-sm text-gray-500" id="el-auvy8t4g">
+
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Video Modal -->
+                    <div id="video-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-75 flex items-center justify-center transition-opacity duration-300" aria-modal="true" aria-hidden="true">
+                        <div class="relative bg-white rounded-lg mx-4 max-w-4xl w-full overflow-hidden" id="el-gnfau1mb">
+                            <!-- Modal Header -->
+                            <div class="flex items-center justify-between p-4 border-b" id="el-w9y2kpou">
+                                <h3 id="modal-title" class="text-lg font-semibold text-gray-900 pr-8 truncate"></h3>
+                                <button id="close-modal" class="text-gray-500 hover:text-gray-700 focus:outline-none" aria-label="Close modal">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg" id="el-hr09es6s">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"
+                        id="el-yu5rmvhs"></path>
+                    </svg>
+                  </button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="p-4" id="el-hkobrguw">
+                                <div class="relative" style="padding-bottom: 56.25%;">
+                                    <iframe id="video-player" class="absolute top-0 left-0 w-full h-full" frameborder="0" allowfullscreen=""></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- JavaScript for functionality -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Elements
+                            const searchInput = document.getElementById('search-input');
+                            const searchButton = document.getElementById('search-button');
+                            const searchResults = document.getElementById('search-results');
+                            const searchStatus = document.getElementById('search-status');
+                            const noResults = document.getElementById('no-results');
+                            const searchInstructions = document.getElementById('search-instructions');
+                            const videoModal = document.getElementById('video-modal');
+                            const videoPlayer = document.getElementById('video-player');
+                            const modalTitle = document.getElementById('modal-title');
+                            const closeModal = document.getElementById('close-modal');
+
+                            // Last focused element before modal opens
+                            let lastFocusedElement = null;
+
+                            // Function to perform search
+                            async function performSearch(query) {
+                                if (!query.trim()) {
+                                    searchStatus.textContent = '';
+                                    return;
+                                }
+
+                                try {
+                                    searchStatus.textContent = 'Searching...';
+                                    searchResults.innerHTML = '';
+                                    noResults.classList.add('hidden');
+
+                                    const encodedQuery = encodeURIComponent(query);
+                                    const response = await fetch(`https://askgurudev.me/public_search/?question=${encodedQuery}`, {
+                                        headers: {
+                                            'X-API-KEY': 'videos'
+                                        }
+                                    });
+
+                                    const data = await response.json();
+
+                                    searchStatus.textContent = '';
+
+                                    if (data.matches && data.matches.length > 0) {
+                                        data.matches.forEach(match => {
+                                            displayResult(match);
+                                        });
+                                    } else {
+                                        noResults.classList.remove('hidden');
+                                    }
+                                } catch (error) {
+                                    console.error('Search error:', error);
+                                    searchStatus.textContent = 'Error occurred during search.';
+                                }
+                            }
+
+                            // Function to display a search result
+                            function displayResult(match) {
+                                const resultElement = document.createElement('div');
+                                resultElement.className = 'bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition duration-300';
+
+                                // Extract video ID and platform from source URL
+                                const videoInfo = getVideoInfo(match.source);
+
+                                // Create result HTML
+                                resultElement.innerHTML = `
+          <div class="sm:flex gap-4">
+            <div class="flex-shrink-0 w-full sm:w-48 h-32 mb-4 sm:mb-0 bg-gray-200 rounded overflow-hidden">
+              ${videoInfo.thumbnailHtml}
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">${match.content}</h3>
+              <p class="text-sm text-gray-500 mb-4">${videoInfo.source}</p>
+              <div class="flex gap-3">
+                <button class="play-video-btn text-blue-600 hover:text-blue-800 font-medium">
+                  <i class="fas fa-play mr-1"></i> Watch Video
+                </button>
+                <a href="${match.source}" target="_blank" rel="noopener noreferrer" 
+                   class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                  <i class="fas fa-external-link-alt mr-1"></i> Open in New Tab
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+
+                                // Add click event to play video
+                                resultElement.querySelector('.play-video-btn').addEventListener('click', () => {
+                                    openVideoModal(match.content, match.source);
+                                });
+
+                                // Also make the whole card clickable
+                                resultElement.addEventListener('click', (event) => {
+                                    // Prevent duplicate triggering if the button was clicked
+                                    if (!event.target.closest('.play-video-btn') && !event.target.closest('a')) {
+                                        openVideoModal(match.content, match.source);
+                                    }
+                                });
+
+                                searchResults.appendChild(resultElement);
+                            }
+
+                            // Function to extract video information
+                            function getVideoInfo(sourceUrl) {
+                                let thumbnailHtml = `<div class="w-full h-full flex items-center justify-center bg-gray-200">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>`;
+
+                                let source = new URL(sourceUrl);
+                                let platform = source.hostname;
+
+                                // YouTube thumbnail extraction
+                                if (platform.includes('youtube.com') || platform.includes('youtu.be')) {
+                                    const videoId = sourceUrl.includes('youtube.com') ?
+                                        new URLSearchParams(source.search).get('v') :
+                                        source.pathname.substring(1).split('&')[0]; // For youtu.be links
+
+                                    if (videoId) {
+                                        thumbnailHtml = `<img src="https://img.youtube.com/vi/${videoId}/mqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/320x180?text=Video'">`;
+                                    }
+                                }
+
+                                return {
+                                    thumbnailHtml,
+                                    source: platform
+                                };
+                            }
+
+                            // Function to open video modal
+                            function openVideoModal(title, videoUrl) {
+                                lastFocusedElement = document.activeElement;
+                                modalTitle.textContent = title;
+
+                                // Extract video information and create embed URL
+                                let embedUrl = '';
+
+                                if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+                                    // Handle YouTube videos
+                                    const youtubeUrl = new URL(videoUrl);
+                                    let videoId;
+
+                                    if (videoUrl.includes('youtube.com')) {
+                                        videoId = new URLSearchParams(youtubeUrl.search).get('v');
+                                    } else {
+                                        // For youtu.be short links
+                                        videoId = youtubeUrl.pathname.substring(1).split('&')[0];
+                                    }
+
+                                    // Extract timestamp if present
+                                    let timestamp = '';
+                                    if (videoUrl.includes('&t=')) {
+                                        const timeMatch = videoUrl.match(/[&?]t=([^&]+)/);
+                                        if (timeMatch && timeMatch[1]) {
+                                            // Convert timestamp format if needed
+                                            const timeStr = timeMatch[1];
+                                            if (timeStr.includes('s')) {
+                                                timestamp = parseInt(timeStr);
+                                            } else {
+                                                timestamp = timeStr;
+                                            }
+                                            timestamp = `&start=${timestamp}`;
+                                        }
+                                    }
+
+                                    embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1${timestamp}`;
+                                } else if (videoUrl.includes('instagram.com')) {
+                                    // Handle Instagram videos - would need to use their embed API
+                                    embedUrl = videoUrl;
+                                } else if (videoUrl.includes('facebook.com')) {
+                                    // Handle Facebook videos - would need to use their embed API
+                                    embedUrl = videoUrl;
+                                } else {
+                                    // Default fallback - just open the URL
+                                    embedUrl = videoUrl;
+                                }
+
+                                // Set the iframe source
+                                videoPlayer.src = embedUrl;
+
+                                // Show modal
+                                videoModal.classList.remove('hidden');
+                                document.body.classList.add('overflow-hidden');
+
+                                // Focus on close button
+                                setTimeout(() => {
+                                    closeModal.focus();
+                                }, 100);
+                            }
+
+                            // Function to close video modal
+                            function closeVideoModal() {
+                                videoModal.classList.add('hidden');
+                                document.body.classList.remove('overflow-hidden');
+
+                                // Clear iframe src to stop video
+                                videoPlayer.src = '';
+
+                                // Return focus to last focused element
+                                if (lastFocusedElement) {
+                                    lastFocusedElement.focus();
+                                }
+                            }
+
+                            // Event Listeners
+                            searchButton.addEventListener('click', () => {
+                                performSearch(searchInput.value);
+                            });
+
+                            searchInput.addEventListener('keydown', (e) => {
+                                if (e.key === 'Enter') {
+                                    performSearch(searchInput.value);
+                                }
+                            });
+
+                            // Modal close button
+                            closeModal.addEventListener('click', closeVideoModal);
+
+                            // Close modal when clicking outside
+                            videoModal.addEventListener('click', (e) => {
+                                if (e.target === videoModal) {
+                                    closeVideoModal();
+                                }
+                            });
+
+                            // Close modal on ESC key
+                            document.addEventListener('keydown', (e) => {
+                                if (e.key === 'Escape' && !videoModal.classList.contains('hidden')) {
+                                    closeVideoModal();
+                                }
+                            });
+
+                            // Focus trap within modal
+                            videoModal.addEventListener('keydown', (e) => {
+                                if (e.key === 'Tab') {
+                                    // Get all focusable elements
+                                    const focusableElements = videoModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                                    const firstElement = focusableElements[0];
+                                    const lastElement = focusableElements[focusableElements.length - 1];
+
+                                    // If shift key pressed and focus on first element, move to last
+                                    if (e.shiftKey && document.activeElement === firstElement) {
+                                        e.preventDefault();
+                                        lastElement.focus();
+                                    }
+                                    // If no shift key and focus on last element, move to first
+                                    else if (!e.shiftKey && document.activeElement === lastElement) {
+                                        e.preventDefault();
+                                        firstElement.focus();
+                                    }
+                                }
+                            });
+
+                            // Initial focus in search box
+                            searchInput.focus();
+                        });
+                    </script>
+                </div>
+            </element>
+            <element id="c7765f4d-04f6-4b39-b433-33a898dab002" data-section-id="c7765f4d-04f6-4b39-b433-33a898dab002">
+
+
+
+
+            </element>
+            <element id="f260452c-315c-4e9e-a3f1-6408b541f173" data-section-id="f260452c-315c-4e9e-a3f1-6408b541f173">
+
+
+
+                <div id="root">
+                    <section id="videoPlayer" class="hidden fixed inset-0 z-50 flex items-center justify-center">
+                        <!-- Overlay Background -->
+                        <div id="video-modal-overlay" class="absolute inset-0 bg-black bg-opacity-75 transition-opacity duration-300"></div>
+
+                        <!-- Modal Container -->
+                        <div class="relative max-w-5xl w-full mx-4 bg-white rounded-lg shadow-xl transition-all duration-300 transform scale-95 opacity-0" id="video-modal-container" aria-modal="true" aria-labelledby="video-modal-title" aria-hidden="true">
+
+                            <!-- Modal Header -->
+                            <div class="flex items-center justify-between p-4 border-b border-gray-200" id="el-2tz9bo1z">
+                                <h3 id="video-modal-title" class="text-lg font-medium text-gray-900 pr-8 truncate">Video Title</h3>
+                                <button id="close-video-modal" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md" aria-label="Close video player">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg" id="el-wzmcsh6e">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"
+                        id="el-o68iw9cz"></path>
+                    </svg>
+                  </button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="p-4" id="el-tf8jezlu">
+                                <!-- Video Player -->
+                                <div class="relative bg-black aspect-video w-full overflow-hidden" id="el-wyp4en71">
+                                    <div id="video-loading" class="absolute inset-0 flex items-center justify-center bg-gray-900">
+                                        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" id="el-ki5o6ki5"></div>
+                                    </div>
+                                    <iframe id="video-iframe" class="absolute inset-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" title="Video content" src="about:blank"></iframe>
+                                </div>
+
+                                <!-- Video Information -->
+                                <div class="mt-4" id="el-s6o8m9nk">
+                                    <div id="video-description" class="text-sm text-gray-600"></div>
+                                    <div class="mt-2 flex items-center text-sm text-gray-500" id="el-6v494eb4">
+                                        <span id="video-source" class="truncate"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Elements
+                            const videoPlayerSection = document.getElementById('videoPlayer');
+                            const videoModalContainer = document.getElementById('video-modal-container');
+                            const videoModalOverlay = document.getElementById('video-modal-overlay');
+                            const closeVideoModal = document.getElementById('close-video-modal');
+                            const videoIframe = document.getElementById('video-iframe');
+                            const videoModalTitle = document.getElementById('video-modal-title');
+                            const videoDescription = document.getElementById('video-description');
+                            const videoSource = document.getElementById('video-source');
+                            const videoLoading = document.getElementById('video-loading');
+
+                            // Track last focused element to return focus when modal closes
+                            let lastFocusedElement = null;
+
+                            // Function to open the video player modal
+                            window.openVideoPlayer = function(videoData) {
+                                // Store the currently focused element
+                                lastFocusedElement = document.activeElement;
+
+                                // Show the modal section
+                                videoPlayerSection.classList.remove('hidden');
+                                document.body.classList.add('overflow-hidden'); // Prevent scrolling
+
+                                // Set video details
+                                videoModalTitle.textContent = videoData.title || 'Video';
+                                videoDescription.textContent = videoData.description || '';
+
+                                // Format source URL for display
+                                try {
+                                    const sourceUrl = new URL(videoData.source);
+                                    videoSource.textContent = sourceUrl.hostname.replace('www.', '');
+                                } catch (e) {
+                                    videoSource.textContent = videoData.source || '';
+                                }
+
+                                // Show loading indicator
+                                videoLoading.classList.remove('hidden');
+
+                                // Process video source URL for embedding
+                                const embedUrl = processVideoUrl(videoData.source);
+
+                                // Set iframe source after a short delay to allow modal animation
+                                setTimeout(() => {
+                                    videoIframe.src = embedUrl;
+
+                                    // Show the modal with animation
+                                    videoModalContainer.classList.remove('scale-95', 'opacity-0');
+                                    videoModalContainer.classList.add('scale-100', 'opacity-100');
+
+                                    // Hide loading indicator when iframe loads
+                                    videoIframe.onload = function() {
+                                        videoLoading.classList.add('hidden');
+                                    };
+
+                                    // Set focus to close button
+                                    closeVideoModal.focus();
+                                }, 50);
+                            };
+
+                            // Function to process video URLs for proper embedding
+                            function processVideoUrl(sourceUrl) {
+                                try {
+                                    const url = new URL(sourceUrl);
+                                    const domain = url.hostname;
+
+                                    // YouTube video handling
+                                    if (domain.includes('youtube.com') || domain.includes('youtu.be')) {
+                                        let videoId = '';
+                                        let timestamp = '';
+
+                                        // Extract video ID based on URL format
+                                        if (domain.includes('youtube.com')) {
+                                            videoId = new URLSearchParams(url.search).get('v');
+
+                                            // Check for timestamp parameter
+                                            if (sourceUrl.includes('&t=')) {
+                                                const timeMatch = sourceUrl.match(/[&?]t=([^&]+)/);
+                                                if (timeMatch && timeMatch[1]) {
+                                                    let timeValue = timeMatch[1];
+                                                    // Convert "123.45s" format to just seconds
+                                                    if (timeValue.includes('s')) {
+                                                        timeValue = parseInt(timeValue);
+                                                    }
+                                                    timestamp = `&start=${timeValue}`;
+                                                }
+                                            }
+                                        } else if (domain.includes('youtu.be')) {
+                                            // For short youtu.be links
+                                            videoId = url.pathname.substring(1);
+                                            const ampIndex = videoId.indexOf('&');
+                                            if (ampIndex > 0) {
+                                                videoId = videoId.substring(0, ampIndex);
+                                            }
+
+                                            // Check for timestamp
+                                            if (sourceUrl.includes('&t=')) {
+                                                const timeMatch = sourceUrl.match(/[&?]t=([^&]+)/);
+                                                if (timeMatch && timeMatch[1]) {
+                                                    let timeValue = timeMatch[1];
+                                                    if (timeValue.includes('s')) {
+                                                        timeValue = parseInt(timeValue);
+                                                    }
+                                                    timestamp = `&start=${timeValue}`;
+                                                }
+                                            }
+                                        }
+
+                                        if (videoId) {
+                                            return `https://www.youtube.com/embed/${videoId}?autoplay=1${timestamp}`;
+                                        }
+                                    }
+                                    // Instagram video handling
+                                    else if (domain.includes('instagram.com')) {
+                                        // Instagram embed handling would go here
+                                        // For now, we'll just return the URL as Instagram requires oEmbed API for proper embedding
+                                        return sourceUrl;
+                                    }
+                                    // Facebook video handling
+                                    else if (domain.includes('facebook.com')) {
+                                        // Facebook embed handling would go here
+                                        return sourceUrl;
+                                    }
+
+                                    // Default fallback for other video sources
+                                    return sourceUrl;
+                                } catch (e) {
+                                    console.error('Error processing video URL:', e);
+                                    return sourceUrl;
+                                }
+                            }
+
+                            // Function to close the video player modal
+                            function closeVideoPlayerModal() {
+                                // Start fade out animation
+                                videoModalContainer.classList.add('scale-95', 'opacity-0');
+                                videoModalContainer.classList.remove('scale-100', 'opacity-100');
+
+                                // After animation completes
+                                setTimeout(() => {
+                                    // Hide the modal
+                                    videoPlayerSection.classList.add('hidden');
+
+                                    // Clear the iframe source to stop video
+                                    videoIframe.src = 'about:blank';
+
+                                    // Re-enable scrolling
+                                    document.body.classList.remove('overflow-hidden');
+
+                                    // Return focus to the element that was focused before modal opened
+                                    if (lastFocusedElement) {
+                                        lastFocusedElement.focus();
+                                    }
+                                }, 300);
+                            }
+
+                            // Event Listeners
+
+                            // Close button click
+                            closeVideoModal.addEventListener('click', closeVideoPlayerModal);
+
+                            // Close on overlay click
+                            videoModalOverlay.addEventListener('click', closeVideoPlayerModal);
+
+                            // Close on ESC key
+                            document.addEventListener('keydown', function(event) {
+                                if (event.key === 'Escape' && !videoPlayerSection.classList.contains('hidden')) {
+                                    closeVideoPlayerModal();
+                                }
+                            });
+
+                            // Focus trap within modal
+                            videoPlayerSection.addEventListener('keydown', function(event) {
+                                if (event.key === 'Tab' && !videoPlayerSection.classList.contains('hidden')) {
+                                    const focusableElements = videoPlayerSection.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                                    const firstElement = focusableElements[0];
+                                    const lastElement = focusableElements[focusableElements.length - 1];
+
+                                    // If shift+tab on first element, move to last
+                                    if (event.shiftKey && document.activeElement === firstElement) {
+                                        event.preventDefault();
+                                        lastElement.focus();
+                                    }
+                                    // If tab on last element, move to first
+                                    else if (!event.shiftKey && document.activeElement === lastElement) {
+                                        event.preventDefault();
+                                        firstElement.focus();
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+
+
+            </element>
+            <element id="b19972c2-515f-49c1-b67e-2ec702b85b25" data-section-id="b19972c2-515f-49c1-b67e-2ec702b85b25">
+
+                <element id="b19972c2-515f-49c1-b67e-2ec702b85b25" data-section-id="b19972c2-515f-49c1-b67e-2ec702b85b25">
+
+
+
+                </element>
+        </div>
+    </main>
+
+    <!-- {bodyScripts} -->
+</body>
+
+</html>

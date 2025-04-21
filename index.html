@@ -408,7 +408,7 @@
                                         }
                                     }
 
-                                    embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1${timestamp}`;
+                                    embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&origin=${window.location.origin}${timestamp}`;
                                 } else if (videoUrl.includes('instagram.com')) {
                                     // Handle Instagram videos - would need to use their embed API
                                     embedUrl = videoUrl;
@@ -663,7 +663,7 @@
                                         }
 
                                         if (videoId) {
-                                            return `https://www.youtube.com/embed/${videoId}?autoplay=1${timestamp}`;
+                                            return `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1&origin=${window.location.origin}${timestamp}`;
                                         }
                                     }
                                     // Instagram video handling
